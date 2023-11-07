@@ -37,7 +37,7 @@ class UserApi(MethodView):
         def get(self, user_id):
             """Get a user"""
             controller = UsersController()
-            return controller.get(user_id)
+            return controller.get_one(user_id)
             
         @users_blp.arguments(UsersSchema)
         @users_blp.response(HTTPStatus.OK, UsersSchema)
