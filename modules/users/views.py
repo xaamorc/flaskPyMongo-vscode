@@ -1,6 +1,7 @@
 from http import HTTPStatus
-from flask import Blueprint
+from flask_smorest import Blueprint
 from flask.views import MethodView
+from modules.common.schemes import InsertedResponseSchema
 from modules.users.controllers import UsersController
 
 from modules.users.schemes import UsersSchema
@@ -10,7 +11,7 @@ users_blp = Blueprint(
     'users',
     'users_blp',
     url_prefix='/users',
-    description= 'Users REST blueprint'
+    description = "Users REST blueprint"
 )
 
 @users_blp.route('')
@@ -23,7 +24,7 @@ class UsersApi(MethodView):
             return controller.get_all()
         
         @users_blp.arguments(UsersSchema)
-        @users_blp.response(HTTPStatus.CREATED, UsersSchema)
+        @users_blp.response(HTTPStatus.CREATED, InsertedResponseSchema)
         def post(self, user):
             """Create a new user"""
             controller = UsersController()

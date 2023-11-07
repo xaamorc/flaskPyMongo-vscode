@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from flask import Blueprint
+from flask_smorest import Blueprint
 from flask.views import MethodView
 from modules.tasks.controllers import TasksController
 from modules.tasks.schemes import TaskSchema
