@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <h1>Pagina principale</h1>
+    <p>Benvenuto nella pagina principale del nostro sito.</p>
+
+    <h2>Esplora altre pagine:</h2>
+    <ul>
+        <li><a href="{{ url_for('users_page') }}">Vai a Pagina Utenti</a></li>
+        <li><a href=" {{ url_for('tasks_page') }} ">Vai a Pagina Task</a></li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Name:</strong> {{ user.name }}</p>
+    <p><strong>Tasks:</strong>
+        <ul>
+            {% for task in user.tasks %}
+                <li>{{ task.id }}</li>
+                <li>{{ task.description }}</li>   
+            {% endfor %}
+        </ul>
+    </p>
+    <a href="{{ url_for('users_page') }}">Torna alla Pagina degli Users</a>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tasks</title>
+</head>
+<body>
+    <h1>Elenco dei Task</h1>
+    <ul>
+        {% for task in tasks %}
+            <p>
+                <li>{{ task._id }}</li>
+                <li>{{ task.task }}</li>
+                <li>{{ task.is_completed }}</li>
+                <li>{{ task.due_date }}</li>
+            </p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dettagli Task</title>
+</head>
+<body>
+    <h1>Dettagli del Task</h1>
+    <p>ID del Task: {{ task._id }}</p>
+    <p>Descrizione: {{ task.task }}</p>
+    <p>Completato: {{ task.is_completed }}</p>
+    <p>Data di Scadenza: {{ task.due_date }}</p>
+
+    <a href="{{ url_for('tasks_page') }}">Torna alla Pagina dei Task</a>
+</body>
+</html>
