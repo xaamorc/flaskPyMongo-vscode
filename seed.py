@@ -47,41 +47,51 @@ tasks = [
     }
 ]
 
-tasks_dict = {task['_id']: task['task'] for task in tasks}  # Create a dictionary with task id as key and task as value
-
 # Create users
 users = [
     {
         'name': fake.name(),
         'email': fake.email(),
         'password': fake.password(),
-        'tasks': [
-            {'id': 'TASK001', 'description': tasks_dict['TASK001']},  # Add task description
-            {'id': 'TASK002', 'description': tasks_dict['TASK002']},
-            {'id': 'TASK003', 'description': tasks_dict['TASK003']},
-            {'id': 'TASK004', 'description': tasks_dict['TASK004']},
-            {'id': 'TASK005', 'description': tasks_dict['TASK005']}
-        ]
+        'task': 'TASK001'
     },
     {
         'name': fake.name(),
         'email': fake.email(),
         'password': fake.password(),
-        'tasks': [
-            {'id': 'TASK001', 'description': tasks_dict['TASK001']},
-            {'id': 'TASK005', 'description': tasks_dict['TASK005']}
-        ]
+        'task': 'TASK002'
     },
     {
         'name': fake.name(),
         'email': fake.email(),
         'password': fake.password(),
-        'tasks': [
-            {'id': 'TASK005', 'description': tasks_dict['TASK005']}
-        ]
+        'task': 'TASK003'
     }
 ]
 
 # Insert tasks
 taskCollection.insert_many(tasks)
 usersCollection.insert_many(users)
+
+pipeline = [
+    {
+        '$lookup': {
+            'from': 'taskCollection',
+            'localField': 'task',
+            'foreignField': '_id',
+            'as': 'task_info'
+        }
+    },
+    {
+        '$project': {
+            '_id': 1,
+            'name': 1,
+            'task_info': 1
+        }
+    }
+]
+
+result = usersCollection.aggregate(pipeline)
+
+for user in result:
+    print(user)
